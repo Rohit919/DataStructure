@@ -11,7 +11,7 @@ public class DynamicStack extends StackUsingArray {
 	public void push(int value) {
 		if(this.size()==this.data.length) {
 			int arr[] = new int[2*this.data.length];
-			for(int i = 0; i <= top; i++) {
+			for(int i = 0; i <= this.top; i++) {
 				arr[i] = this.data[i];
 			}
 			this.data = arr;

@@ -1,9 +1,9 @@
 package Queue;
 
 public class QueueUsingArray {
-	private int[] data;
-	private int front;
-	private int size;
+	protected int[] data;
+	protected int front;
+	protected int size;
 	public static final int DEFAULT_CAPACITY = 10;
 	public QueueUsingArray() throws Exception {
 		this(DEFAULT_CAPACITY);
