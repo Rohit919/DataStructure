@@ -17,6 +17,8 @@ public class LinkedListClient {
 		list1.display();
 		list1.reverseData();
 		list1.display();
+		list1.reversePointer();
+		list1.display();
 		System.out.println(list1.getFirst());
 		System.out.println(list1.getLast());
 		System.out.println(list1.getAt(3));
