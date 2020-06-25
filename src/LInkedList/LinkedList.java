@@ -21,6 +21,13 @@ public class LinkedList {
 		System.out.println("-----------------------------------");
 	}
 
+	public int size() throws Exception {
+		if (this.size == 0) {
+			throw new Exception("List is empty");
+		}
+		return this.size;
+	}
+
 	public void addLast(int item) {
 		// Create new node
 		Node nn = new Node();
@@ -114,6 +121,7 @@ public class LinkedList {
 			Node np = getNodeAt(index);
 			nm.next = nn;
 			nn.next = np;
+			this.size++;
 		}
 
 	}
@@ -170,6 +178,23 @@ public class LinkedList {
 			this.size --;
 			return  nn.data;
 		}
+	}
+	public void reverseData() throws Exception {
+		if (this.size == 0) {
+			throw new Exception("List is empty");
+		}
+		int left = 0;
+		int right = this.size - 1;
+		while(right > left) {
+			Node ln = getNodeAt(left);
+			Node rn = getNodeAt(right);
+			int temp = ln.data;
+			ln.data = rn.data;
+			rn.data = temp;
+			left++;
+			right--;
+		}
+		
 	}
 
 }
