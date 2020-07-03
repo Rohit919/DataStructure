@@ -1,93 +1,84 @@
 package LInkedList;
 
-public class LinkedList {
+public class DoublyLinkedList {
+
 	private class Node {
-		int data;
+		Node prev;
 		Node next;
+		int data;
 	}
 
 	private Node head;
 	private Node tail;
 	private int size;
 
-	public void display() {
-		System.out.println("-----------------------------------");
-		Node temp = head;
-		while (temp != null) {
-			System.out.print(temp.data + ", ");
-			temp = temp.next;
-		}
-		System.out.println("END");
-		System.out.println("-----------------------------------");
-	}
-
-	public int size() throws Exception {
-		if (this.size == 0) {
-			throw new Exception("List is empty");
-		}
-		return this.size;
-	}
-
 	public void addLast(int item) {
-		// Create new node
+		// Create node
 		Node nn = new Node();
 		nn.data = item;
 		nn.next = null;
+		nn.prev = null;
 
 		// Attach and Summary Update
 		if (this.size == 0) {
+			nn.prev = null;
 			this.head = nn;
 		} else {
-			this.tail.next = nn;
+			nn.prev = tail;
+			tail.next = nn;
 		}
 		this.tail = nn;
 		this.size++;
 	}
 
+	public void display() throws Exception {
+		if (this.size == 0) {
+			throw new Exception("List is Empty");
+		} else {
+			System.out.println("-----------------------------------");
+			Node temp = head;
+			while (temp != null) {
+				System.out.print(temp.data + ", ");
+				temp = temp.next;
+			}
+			System.out.println("END");
+			System.out.println("-----------------------------------");
+		}
+	}
+
+	public void displayReverse() throws Exception {
+		if (this.size == 0) {
+			throw new Exception("List is Empty");
+		} else {
+			System.out.println("-----------------------------------");
+			Node temp = tail;
+			while (temp != null) {
+				System.out.print(temp.data + ", ");
+				temp = temp.prev;
+			}
+			System.out.println("END");
+			System.out.println("-----------------------------------");
+		}
+	}
+
 	public void addFirst(int item) {
-		// Create new node
+		// Create node
 		Node nn = new Node();
 		nn.data = item;
 		nn.next = null;
+		nn.prev = null;
 
 		// Attach and Summary Update
 		if (this.size == 0) {
-			this.tail = nn;
+			nn.prev = null;
+			this.head = nn;
 		} else {
-			nn.next = this.head;
+			nn.next = head;
+			head.prev = nn;
 		}
 		this.head = nn;
 		this.size++;
 	}
-
-	public int getFirst() throws Exception {
-		if (this.size == 0) {
-			throw new Exception("List is empty");
-		}
-		return this.head.data;
-	}
-
-	public int getLast() throws Exception {
-		if (this.size == 0) {
-			throw new Exception("List is empty");
-		}
-		return this.tail.data;
-	}
-
-	public int getAt(int index) throws Exception {
-		if (this.size == 0) {
-			throw new Exception("List is empty");
-		}
-		if (this.size < index || this.size < 0) {
-			throw new Exception("Invalid Index");
-		}
-		Node temp = head;
-		for (int i = 1; i <= index; i++) {
-			temp = temp.next;
-		}
-		return temp.data;
-	}
-
 	private Node getNodeAt(int index) throws Exception {
 		if (this.size == 0) {
 			throw new Exception("List is empty");
@@ -120,12 +111,13 @@ public class LinkedList {
 			Node nm = getNodeAt(index - 1);
 			Node np = getNodeAt(index);
 			nm.next = nn;
+			nn.prev = nm;
 			nn.next = np;
+			np.prev = nn;
 			this.size++;
 		}
 
 	}
-
 	public int removeFirst() throws Exception {
 		if (this.size == 0) {
 			throw new Exception("List is empty");
@@ -137,6 +129,7 @@ public class LinkedList {
 			this.size = 0;
 		} else {
 			this.head = this.head.next;
+			this.head.prev = null;
 			this.size--;
 		}
 		return rv;
@@ -175,43 +168,37 @@ public class LinkedList {
 			Node nn = nm.next;
 			Node np = nn.next;
 			nm.next = np;
+			np.prev = nm;
 			this.size --;
 			return  nn.data;
 		}
 	}
-	public void reverseData() throws Exception {
+	public int getFirst() throws Exception {
 		if (this.size == 0) {
 			throw new Exception("List is empty");
 		}
-		int left = 0;
-		int right = this.size - 1;
-		while(right > left) {
-			Node ln = getNodeAt(left);
-			Node rn = getNodeAt(right);
-			int temp = ln.data;
-			ln.data = rn.data;
-			rn.data = temp;
-			left++;
-			right--;
-		}
-		
+		return this.head.data;
 	}
-	public void reversePointer() throws Exception {
+
+	public int getLast() throws Exception {
 		if (this.size == 0) {
 			throw new Exception("List is empty");
 		}
-		Node prev = this.head;
-		Node curr = prev.next;
-		while(curr != null) {
-			Node ahead = curr.next;
-			curr.next = prev;
-			prev = curr;
-			curr = ahead;
+		return this.tail.data;
+	}
+
+	public int getAt(int index) throws Exception {
+		if (this.size == 0) {
+			throw new Exception("List is empty");
 		}
-		Node temp = this.head;
-		this.head = tail;
-		this.tail =temp;
-		this.tail.next = null;
+		if (this.size < index || this.size < 0) {
+			throw new Exception("Invalid Index");
+		}
+		Node temp = head;
+		for (int i = 1; i <= index; i++) {
+			temp = temp.next;
+		}
+		return temp.data;
 	}
 
 }
