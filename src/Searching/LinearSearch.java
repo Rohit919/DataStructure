@@ -6,7 +6,7 @@ public class LinearSearch {
 
 	public static void main(String[] args) {
 		int arr[] = arrayInput();
-		int index = binarySearch(arr);
+		int index = linearSearch(arr);
 		if(index >= 0) {
 			System.out.println("Element found at index: " + index);
 		}
@@ -27,7 +27,7 @@ public class LinearSearch {
 		return arr;
 
 	}
-	public static int binarySearch(int arr[]) {
+	public static int linearSearch(int arr[]) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the element: -");
 		int ele = sc.nextInt();
