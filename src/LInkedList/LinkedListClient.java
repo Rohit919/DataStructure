@@ -11,6 +11,7 @@ public class LinkedListClient {
 		list1.addFirst(50);
 		list1.addFirst(60);
 		list1.addAt(60, 5);
+		list1.display();
 		list1.addAt(70, 0);
 		list1.addAt(80, 7);
 		list1.addAt(80, 8);

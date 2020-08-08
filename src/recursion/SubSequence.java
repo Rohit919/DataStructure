@@ -1,11 +1,14 @@
 package recursion;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class SubSequence {
 
 	public static void main(String[] args) {
-		for(String ss:getSS("abc"))    
+		ArrayList<String> result = getSS("abc");
+		Collections.sort(result);  
+		for(String ss:result)    
 		    System.out.println(ss);    
 
 	}
