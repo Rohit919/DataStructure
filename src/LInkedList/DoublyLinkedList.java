@@ -89,7 +89,7 @@ public class DoublyLinkedList {
 			return this.tail;
 		} else {
 			Node temp = this.head;
-			for (int i = 0; i <= index; i++) {
+			for (int i = 0; i < index; i++) {
 				temp = temp.next;
 			}
 			return temp;
@@ -128,5 +128,11 @@ public class DoublyLinkedList {
 		}
 		System.out.println("END");
 		System.out.println("********************************");
+	}
+	public int getsize() throws Exception {
+		if (this.size == 0) {
+			throw new Exception("List is empty");
+		}
+		return this.size;
 	}
 }
