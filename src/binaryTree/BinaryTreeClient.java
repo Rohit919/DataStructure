@@ -15,3 +15,4 @@ public class BinaryTreeClient {
 
 // 50 true 45 true 25 false false true 48 false false true 86 true 46 true 45 false false false false
 
+ 
